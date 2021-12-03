@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace RedisExample.Controllers
+﻿namespace RedisExample.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -10,7 +7,5 @@ namespace RedisExample.Controllers
         public RedisController()
         {
         }
-
-
     }
 }
