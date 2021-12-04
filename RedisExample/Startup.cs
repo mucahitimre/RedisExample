@@ -1,14 +1,25 @@
 using Microsoft.OpenApi.Models;
+using RedisExample.Services;
 
 namespace RedisExample
 {
+    /// <summary>
+    /// The startup
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// The startup
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// The configuration
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -20,6 +31,8 @@ namespace RedisExample
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RedisExample", Version = "v1" });
             });
+
+            services.AddSingleton<IRedisConnectionProvider, RedisConnectionProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
