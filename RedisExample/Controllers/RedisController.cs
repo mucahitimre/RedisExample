@@ -67,6 +67,35 @@
         }
 
         /// <summary>
+        /// The get string
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetInfo")]
+        public Information GetInfo()
+        {
+            using (var session = _connectionProvider.OpenConnection(out var database))
+            {
+                var config = _connectionProvider.GetRedisConfiguration(true);
+                var server = session.GetServer(session.GetEndPoints().First());
+                var data = new Information(
+                    session.Configuration,
+                    session.ClientName,
+                    session.OperationCount,
+                    session.TimeoutMilliseconds,
+                    session.IsConnected,
+                    server.Version,
+                    server.ServerType,
+                    server.Features
+                );
+
+                return data;
+            }
+        }
+
+
+        /// <summary>
         /// Delete string value
         /// </summary>
         /// <param name="key"></param>
@@ -116,6 +145,7 @@
                     }
                     catch (Exception)
                     {
+                        // log..
                         continue;
                     }
                 }
