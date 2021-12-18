@@ -67,9 +67,8 @@
         }
 
         /// <summary>
-        /// The get string
+        /// The get info
         /// </summary>
-        /// <param name="key"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("GetInfo")]
